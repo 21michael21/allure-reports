@@ -59,4 +59,14 @@ jobs:
           publish_dir: ./allure-report
           keep_files: false
           force_orphan: false
+      
+      - name: Report URL
+        run: |
+          echo "## 📊 Allure Report" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Отчет успешно опубликован на GitHub Pages!" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "🔗 **Открыть отчет:** [https://21michael21.github.io/allure-reports/](https://21michael21.github.io/allure-reports/)" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📈 История всех запусков доступна в интерфейсе Allure." >> $GITHUB_STEP_SUMMARY
 
