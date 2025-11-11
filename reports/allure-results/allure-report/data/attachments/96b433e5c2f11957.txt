@@ -1,0 +1,1 @@
+https://api-cloud.ru/api/apilk.php?type=stlastmonth&token=410d314b28c825603aefb6790fa43cde
