@@ -55,12 +55,21 @@ jobs:
             echo "<html><body><h1>No test results yet</h1><p>Waiting for test results...</p></body></html>" > allure-report/index.html
           fi
       
+      - name: Verify report structure before deploy
+        run: |
+          echo "Report structure:"
+          find allure-report -type f -name "*.json" | head -10
+          echo "Test cases:"
+          find allure-report/data/test-cases -name "*.json" 2>/dev/null | wc -l || echo "0"
+          echo "Attachments:"
+          find allure-report/data/attachments -type f 2>/dev/null | wc -l || echo "0"
+      
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./allure-report
-          keep_files: false
+          keep_files: true
           force_orphan: false
       
       - name: Report URL
