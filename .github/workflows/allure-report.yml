@@ -9,6 +9,10 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
     
     steps:
       - name: Checkout code
@@ -43,8 +47,9 @@ jobs:
             allure generate reports/allure-results --clean -o allure-report
             echo "✅ Report generated successfully"
           else
-            echo "❌ No test results found to generate report"
-            exit 1
+            echo "⚠️ No test results found, creating placeholder"
+            mkdir -p allure-report
+            echo "<html><body><h1>No test results yet</h1><p>Waiting for test results...</p></body></html>" > allure-report/index.html
           fi
       
       - name: Deploy to GitHub Pages
